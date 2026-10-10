@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CGPA Buddy — GPA & Retake Planner</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand"><div class="logo">Σ</div><div><h1>CGPA Buddy</h1><p class="subtitle">Plan your grades. Compare retakes. Make smarter decisions.</p></div></div>
+    <div class="pill">↳ Saves automatically on this device</div>
+  </header>
+
+  <section class="hero">
+    <div class="panel">
+      <h2 class="section-title">Your grade snapshot</h2>
+      <p class="hint">Current vs. planned grades for the courses below.</p>
+      <div class="stats">
+        <div class="stat"><div class="label">Current GPA</div><div class="value" id="currentGpa">—</div><div class="sub">From current grades</div></div>
+        <div class="stat"><div class="label">Planned GPA</div><div class="value" id="plannedGpa">—</div><div class="sub">From target grades</div></div>
+        <div class="stat"><div class="label">Difference</div><div class="value" id="gpaChange">—</div><div class="sub" id="changeCaption">GPA points</div></div>
+      </div>
+      <p class="note">GPA = total (credits × grade points) ÷ total credits. Results use the values you enter; your university's official rounding or retake rules may differ.</p>
+    </div>
+
+    <div class="panel">
+      <h2 class="section-title">CGPA retake simulator</h2>
+      <p class="hint">Use this when the listed old grades are already included in your current CGPA and the new grade replaces the old one.</p>
+      <div class="mini-grid">
+        <div class="field"><label for="overallCgpa">Current overall CGPA</label><input id="overallCgpa" type="number" min="0" max="4" step="0.01" placeholder="e.g. 2.80" inputmode="decimal"></div>
+        <div class="field"><label for="totalCredits">Credits counted in CGPA</label><input id="totalCredits" type="number" min="0.25" max="300" step="0.25" placeholder="e.g. 19.25" inputmode="decimal"></div>
+      </div>
+      <div class="stats" style="margin-top:12px;grid-template-columns:1fr 1fr">
+        <div class="stat"><div class="label">Projected CGPA</div><div class="value" id="projectedCgpa">—</div><div class="sub">After grade replacement</div></div>
+        <div class="stat"><div class="label">Quality points gained</div><div class="value" id="qualityGain">0.00</div><div class="sub">From target improvements</div></div>
+      </div>
+      <p class="note"><strong>Important:</strong> This is a retake estimate, not a new-semester CGPA forecast. Enter your actual current CGPA and total credits already counted in it. If your university averages both attempts instead of replacing the old grade, this estimate won't apply.</p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="courses-head">
+      <div><h2 class="section-title">Courses</h2><p class="hint" style="margin-bottom:0">Change credits or grades, or add your own courses.</p></div>
+      <div class="btns"><button class="btn primary" id="addCourse">＋ Add course</button><button class="btn" id="exportCsv">Export CSV</button><button class="btn ghost" id="resetBtn">Clear all</button></div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th style="width:26%">Course name</th><th>Credits</th><th>Current grade</th><th>Target grade</th><th>Current points</th><th>Target points</th><th></th></tr></thead>
+        <tbody id="courseTable"></tbody>
+      </table>
+    </div>
+    <div class="mobile-list" id="mobileCourses"></div>
+    <div class="bottom-row"><div class="summary-text" id="totalsSummary">0 courses · 0.00 credits</div><div class="summary-text">Grade points are on a 4.00 scale.</div></div>
+  </section>
+  <div class="footer">CGPA Buddy · Works offline · Your data stays in this browser unless you export it.</div>
+</div>
+<script src="app.js"></script>
+
+</body>
+</html>
